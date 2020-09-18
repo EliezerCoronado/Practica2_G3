@@ -5,16 +5,16 @@
     <div class="wrapper wrapper--w790">
         <div class="card card-5">
             <div class="card-heading">
-                <h2 class="title">Ingresar</h2>
+                <h2 class="title">Registro</h2>
             </div>
             <div class="card-body">
-                <form ngNativeValidate>
+                <form ngNativeValidate [formGroup]="forma" (ngSubmit)='registrarMedico()'>
 
                     <div class="form-row">
                         <div class="name">Nombre</div>
                         <div class="value">
                             <div class="input-group">
-                                <input ngModel name="usuario" class="input--style-5" type="text" placeholder="usuario" required>
+                                <input formControlName='firstName' name="firstName" class="input--style-5" type="text" placeholder="Nombre" required>
                             </div>
                         </div>
                     </div>
@@ -23,16 +23,47 @@
                         <div class="name">Apellido</div>
                         <div class="value">
                             <div class="input-group">
-                                <input ngModel name="usuario" class="input--style-5" type="text" placeholder="usuario" required>
+                                <input formControlName='lastName' name="lastName" class="input--style-5" type="text" placeholder="Apeliido" required>
                             </div>
                         </div>
                     </div>
 
                     <div class="form-row">
+                        <div class="name">Dpi</div>
+                        <div class="value">
+                            <div class="input-group">
+                                <input formControlName='dpi' name="dpi" class="input--style-5" type="text" placeholder="DPI" required>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="name">Numero de Colegiado</div>
+                        <div class="value">
+                            <div class="input-group">
+                                <input formControlName='colegiado' name="colegiado" class="input--style-5" type="text" placeholder="No. Colegiado" required>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="name">Genero</div>
+                        <div class="value">
+                            <div class="input-group">
+
+                                <select formControlName="genero" name="genero" class="form-control input--style-5" placeholder="Genero" required>
+                                <option>Masculino</option>
+                                <option>Femenino</option>
+                            </select>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-row">
                         <div class="name">Usuario</div>
                         <div class="value">
                             <div class="input-group">
-                                <input ngModel name="usuario" class="input--style-5" type="text" placeholder="usuario" required>
+                                <input formControlName='userName' name="userNam" class="input--style-5" type="text" placeholder="Usuario" required>
                             </div>
                         </div>
                     </div>
@@ -42,7 +73,7 @@
                         <div class="name">Contraseña</div>
                         <div class="value">
                             <div class="input-group">
-                                <input ngModel name="password" type="password" class="input--style-5" placeholder="contraseña" required>
+                                <input formControlName='password' name="password" type="password" class="input--style-5" placeholder="Contraseña" required>
                             </div>
                         </div>
                     </div>
@@ -51,7 +82,7 @@
                         <div class="name">Confirmar Contraseña</div>
                         <div class="value">
                             <div class="input-group">
-                                <input ngModel name="password" type="password" class="input--style-5" placeholder="contraseña" required>
+                                <input formControlName='password2' name="password2" type="password" class="input--style-5" placeholder="confirmar contraseña" required>
                             </div>
                         </div>
                     </div>

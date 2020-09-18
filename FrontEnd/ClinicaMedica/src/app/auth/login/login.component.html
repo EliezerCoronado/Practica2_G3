@@ -8,12 +8,12 @@
                 <h2 class="title">Ingresar</h2>
             </div>
             <div class="card-body">
-                <form ngNativeValidate>
+                <form ngNativeValidate [formGroup]=forma (ngSubmit)='ingresar()'>
                     <div class="form-row">
                         <div class="name">Usuario</div>
                         <div class="value">
                             <div class="input-group">
-                                <input ngModel name="usuario" class="input--style-5" type="text" placeholder="usuario" required>
+                                <input formControlName='userName' name="userName" class="input--style-5" type="text" placeholder="usuario" required>
                             </div>
                         </div>
                     </div>
@@ -22,12 +22,10 @@
                         <div class="name">Contraseña</div>
                         <div class="value">
                             <div class="input-group">
-                                <input ngModel name="password" type="password" class="input--style-5" placeholder="contraseña" required>
+                                <input formControlName='password' name="password" type="password" class="input--style-5" placeholder="contraseña" required>
                             </div>
                         </div>
                     </div>
-
-
 
 
                     <div class="col-sm-12 text-right">

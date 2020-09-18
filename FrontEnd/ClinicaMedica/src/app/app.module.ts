@@ -8,6 +8,10 @@ import { RegisterComponent } from './auth/register/register.component';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { NopagefoundComponent } from './pages/nopagefound/nopagefound.component';
 import { PageComponent } from './pages/page.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { UsuarioService } from './services/usuario.service';
+import { HttpClientModule } from '@angular/common/http';
+
 
 @NgModule({
   declarations: [
@@ -20,7 +24,11 @@ import { PageComponent } from './pages/page.component';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule,
+    ReactiveFormsModule,
+    HttpClientModule
+    
   ],
   providers: [],
   bootstrap: [AppComponent]

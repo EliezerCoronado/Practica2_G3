@@ -1,5 +1,5 @@
 const express = require('express');
-const {dbConnection} = require('./database/config');
+const { dbConnection } = require('./database/config');
 const cors = require('cors');
 
 
@@ -21,10 +21,11 @@ dbConnection();
 
 //rutas
 app.use('/api/medicos', require('./routes/medicos'));
+app.use('/api/pacientes', require('./routes/pacientes'));
 app.use('/api/login', require('./routes/auth'));
 
 
 
-app.listen(3000,()=>{
+app.listen(3000, () => {
     console.log('Servidor corriendo en puerto 3000');
 });

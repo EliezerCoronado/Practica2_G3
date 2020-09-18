@@ -1,26 +1,26 @@
-const {response} = require('express');
+const { response } = require('express');
 const Medico = require('../models/medico');
 const bcrypt = require('bcryptjs');
 const { generarJWT } = require('../helpers/jwt');
 
-const login = async (req,res = response)=>{
-    const {usuario,password} = req.body;
+const login = async(req, res = response) => {
+    const { usuario, password } = req.body;
 
     try {
 
         //verificar usuario
-        const medicoDB = await Medico.findOne({usuario});
+        const medicoDB = await Medico.findOne({ usuario });
 
-        if(!medicoDB){
+        if (!medicoDB) {
             return res.status(404).json({
                 ok: false,
-                msg: 'email no encontrado'
+                msg: 'usuario no encontrado'
             });
         }
 
         //verificar password
-        const validPassword =  bcrypt.compareSync(password,medicoDB.password);
-        if(!validPassword){
+        const validPassword = bcrypt.compareSync(password, medicoDB.password);
+        if (!validPassword) {
             return res.status(400).json({
                 ok: false,
                 msg: 'contraseña no valida'
@@ -31,7 +31,10 @@ const login = async (req,res = response)=>{
         const token = await generarJWT(medicoDB._id);
 
         res.json({
+            medico: medicoDB,
+            what: 'agg',
             ok: true,
+            id: medicoDB._id,
             token
         });
     } catch (error) {
@@ -44,4 +47,4 @@ const login = async (req,res = response)=>{
 
 }
 
-module.exports = {login}
+module.exports = { login }

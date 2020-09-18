@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http'
 import { URL_SERVICIOS } from '../config/config';
-import { map } from 'rxjs/operators';
+import { first, map } from 'rxjs/operators';
 import Swal from 'sweetalert2';
 
 
@@ -11,11 +11,56 @@ import Swal from 'sweetalert2';
 export class UsuarioService {
 
   username:string;
+  token: string;
+  id:string;
+  firstName: string;
+  lastName: string;
+  dpi: string;
+  colegiado: string;
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) { 
+    this.cargarStorage();
+  }
 
-  saveStorage(username){
+
+  cargarStorage(){
+    if ( localStorage.getItem('token') ){
+      this.token = localStorage.getItem('token');
+      this.id = localStorage.getItem('id');
+      this.username = localStorage.getItem('username');
+      this.firstName = localStorage.getItem('nombre');
+      this.lastName = localStorage.getItem('apellido');
+      this.colegiado = localStorage.getItem('colegiado');
+      this.dpi = localStorage.getItem('dpi');
+    }else{
+      this.token = '';
+      this.id = '';
+      this.username = '';
+      this.firstName = '';
+      this.lastName = '';
+      this.colegiado = '';
+      this.dpi = '';
+    }
+  }
+
+  saveStorage(username, token, firstName, lastName, dpi, colegiado,id){
     localStorage.setItem('username',username);
+    localStorage.setItem('token', token);
+    localStorage.setItem('nombre', firstName);
+    localStorage.setItem('apellido', lastName);
+    localStorage.setItem('dpi',dpi);
+    localStorage.setItem('colegiado',colegiado);
+    localStorage.setItem('id',id);
+    
+  }
+
+  estaLogueado(){
+    this.cargarStorage();
+    if (this.token.length > 10){
+      return true;
+    }else{
+      return false;
+    }
   }
 
 
@@ -38,7 +83,12 @@ export class UsuarioService {
           });
           return false;
         }else{
-          this.saveStorage(user.usuario);
+          this.saveStorage(resp.medico.usuario, 
+                          resp.token, resp.medico.nombre, 
+                          resp.medico.apellido, 
+                          resp.medico.DPI, 
+                          resp.medico.colegiado,
+                          resp.medico._id);
           return true;
         }
       })

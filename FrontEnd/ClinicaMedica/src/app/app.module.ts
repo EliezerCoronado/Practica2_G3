@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
-import { AppRoutingModule } from './app-routing.module';
+import { APP_ROUTES } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './auth/login/login.component';
 import { RegisterComponent } from './auth/register/register.component';
@@ -11,6 +11,8 @@ import { PageComponent } from './pages/page.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { UsuarioService } from './services/usuario.service';
 import { HttpClientModule } from '@angular/common/http';
+import { PAGES_ROUTES } from './pages/pages.routes';
+import { PagesModule } from './pages/page.module';
 
 
 @NgModule({
@@ -18,13 +20,12 @@ import { HttpClientModule } from '@angular/common/http';
     AppComponent,
     LoginComponent,
     RegisterComponent,
-    DashboardComponent,
     NopagefoundComponent,
-    PageComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule,
+    APP_ROUTES,
+    PagesModule,
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule

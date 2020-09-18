@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http'
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http'
 import { URL_SERVICIOS } from '../config/config';
 import { first, map } from 'rxjs/operators';
 import Swal from 'sweetalert2';
@@ -127,6 +127,18 @@ export class UsuarioService {
     );
 
   }
+
+  getPacientes(id:string){
+    const medico={
+      medico:id
+    }
+    const url = URL_SERVICIOS + '/api/pacientes'
+    let params = new HttpParams();
+    params = params.append('medico', id);
+    return this.http.get(url,{params});
+
+  }
+
 }
 
 

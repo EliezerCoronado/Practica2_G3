@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { UsuarioService } from '../../services/usuario.service';
+import * as $ from 'jquery';
 
 @Component({
   selector: 'app-dashboard',
@@ -9,19 +10,25 @@ import { UsuarioService } from '../../services/usuario.service';
 export class DashboardComponent implements OnInit {
 
   constructor(private services: UsuarioService) { }
-  
-  id='';
+
+  id = '';
 
   ngOnInit(): void {
+    //Toggle Click Function
+    $("#menu-toggle").click(function (e) {
+      e.preventDefault();
+      $("#wrapper").toggleClass("toggled");
+    });
+
     this.id = localStorage.getItem('id');
     console.log(this.id);
     this.services.getPacientes(this.id)
-    .subscribe((data:any) =>{
-      console.log(data);
-    },
-    err =>{
-      console.log(err);
-    })
+      .subscribe((data: any) => {
+        console.log(data);
+      },
+        err => {
+          console.log(err);
+        })
   }
 
 }

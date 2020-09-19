@@ -26,14 +26,12 @@ describe('LoginComponent', () => {
       providers:[UsuarioService]
     })
     .compileComponents();
-    servicio = new UsuarioService(null);
   }));
 
   beforeEach(() => {
     fixture = TestBed.createComponent(LoginComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
-    servicio = new UsuarioService(null);
   });
 
   it('should create', () => {
@@ -48,22 +46,22 @@ describe('LoginComponent', () => {
   
   it('El usuario debe ser obligatorio', ()=>{
     const UserName = component.forma.get('userName');
-    UserName.setValue('');
+    UserName.setValue('user1');
+    expect(UserName).toBeTruthy;
   });
-    expect(UserName.valid).toBeFalsy;
 
   it('El usuario no puede ser null', ()=>{
     const UserName = component.forma.get('userName');
-    expect(UserName).toBeFalsy;
     UserName.setValue(null);
+    expect(UserName).toBeFalsy;
   });
 
 
   it('El password debe ser obligatorio', ()=>{
     const Password = component.forma.get('password');
+    Password.setValue('1234');
+    expect(Password).toBeTruthy;
   })
-    expect(Password.valid).toBeFalsy;
-    Password.setValue('');
   
 
   it('Debe de retornar un formulario invalido',()=>{
@@ -82,17 +80,18 @@ describe('LoginComponent', () => {
         return true;
         
       }else{
-        return false;
         done();
+        return false;
       }
-    expect(respuesta).toBeFalse;
     });
+    expect(respuesta).toBeTrue;
   });
   
 
   it('Debe de llamar al srevidor para hacer login',()=>{
-      return EMPTY;
+      
     const espia = spyOn(servicio,'login').and.callFake(medico=>{
+      return EMPTY;
     });
     component.ingresar();
     

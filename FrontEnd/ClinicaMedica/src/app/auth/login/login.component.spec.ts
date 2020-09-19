@@ -4,6 +4,12 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { LoginComponent } from './login.component';
 import { UsuarioService } from '../../services/usuario.service';
 import { HttpClientModule } from '@angular/common/http';
+import { EMPTY } from 'rxjs';
+import { FormBuilder } from '@angular/forms';
+
+
+
+
 
 
 describe('LoginComponent', () => {
@@ -11,6 +17,7 @@ describe('LoginComponent', () => {
 
   let component: LoginComponent;
   let fixture: ComponentFixture<LoginComponent>;
+  let servicio: UsuarioService;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -78,8 +85,17 @@ describe('LoginComponent', () => {
       }
     });
     expect(respuesta).toBeTrue;
-  })
- 
+  });
+  
 
-
+  it('Debe de llamar al srevidor para hacer login',()=>{
+      
+    const espia = spyOn(servicio,'login').and.callFake(medico=>{
+      return EMPTY;
+    });
+    component.ingresar();
+    
+    expect(espia).toHaveBeenCalled();
+  });/*
+*/
 });

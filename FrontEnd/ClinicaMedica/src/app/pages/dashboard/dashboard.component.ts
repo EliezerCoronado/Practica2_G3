@@ -13,6 +13,7 @@ export class DashboardComponent implements OnInit {
   id='';
 
   ngOnInit(): void {
+    /*
     this.id = localStorage.getItem('id');
     console.log(this.id);
     this.services.getPacientes(this.id)
@@ -22,6 +23,7 @@ export class DashboardComponent implements OnInit {
     err =>{
       console.log(err);
     })
+    */
   }
 
 }

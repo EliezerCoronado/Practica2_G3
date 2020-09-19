@@ -1,7 +1,7 @@
 import { TestBed } from '@angular/core/testing';
 
 import { UsuarioService } from './usuario.service';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, } from '@angular/common/http';
 
 describe('UsuarioService', () => {
   let http: HttpClient;
@@ -16,6 +16,5 @@ describe('UsuarioService', () => {
   it('should be created', () => {
     expect(service).toBeTruthy();
   });
-
 
 });

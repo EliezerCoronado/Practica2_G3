@@ -69,12 +69,12 @@ export class UsuarioService {
       usuario: Username,
       password: Password
     };
-    console.log(user);
+    //console.log(user);
 
     const url = URL_SERVICIOS + '/api/login'
     return this.http.post(url,user).pipe(
       map((resp:any) =>{
-        console.log(resp);
+        //console.log(resp);
         if(resp.ok === false){
           Swal.fire({
             icon:'error',

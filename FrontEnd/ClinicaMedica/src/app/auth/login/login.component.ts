@@ -18,15 +18,15 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {
     this.forma = new FormGroup({
-      userName: new FormControl(null, Validators.required),
-      password: new FormControl(null, Validators.required)
+      userName: new FormControl('', Validators.required),
+      password: new FormControl('', Validators.required)
     });
   }
 
 
   ingresar(){
 
-    console.log(this.forma.value);
+    // console.log(this.forma.value);
 
     if(this.forma.invalid){
       Swal.fire({
@@ -39,19 +39,20 @@ export class LoginComponent implements OnInit {
 
     this.service.login(this.forma.value.userName, this.forma.value.password).subscribe(
       (data:boolean)=>{
-        console.log(data)
+        // console.log(data)
         if(data === true){
-          this.route.navigate(['/dashboard']);
+          //this.route.navigate(['/dashboard']);
           return true;
         }
       },
       err => {
-        console.log(err);
+        //console.log(err);
         Swal.fire({
           icon: 'error',
           title:'Error de credenciales',
           text:'Error'
         });
+        return false;
       }
     )
     

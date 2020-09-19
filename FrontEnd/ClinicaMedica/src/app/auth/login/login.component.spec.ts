@@ -4,6 +4,12 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { LoginComponent } from './login.component';
 import { UsuarioService } from '../../services/usuario.service';
 import { HttpClientModule } from '@angular/common/http';
+import { EMPTY } from 'rxjs';
+import { FormBuilder } from '@angular/forms';
+
+
+
+
 
 
 describe('LoginComponent', () => {
@@ -11,6 +17,7 @@ describe('LoginComponent', () => {
 
   let component: LoginComponent;
   let fixture: ComponentFixture<LoginComponent>;
+  let servicio: UsuarioService;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -19,12 +26,14 @@ describe('LoginComponent', () => {
       providers:[UsuarioService]
     })
     .compileComponents();
+    servicio = new UsuarioService(null);
   }));
 
   beforeEach(() => {
     fixture = TestBed.createComponent(LoginComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
+    servicio = new UsuarioService(null);
   });
 
   it('should create', () => {
@@ -39,22 +48,22 @@ describe('LoginComponent', () => {
   
   it('El usuario debe ser obligatorio', ()=>{
     const UserName = component.forma.get('userName');
-    UserName.setValue('user1');
-    expect(UserName).toBeTruthy;
+    UserName.setValue('');
   });
+    expect(UserName.valid).toBeFalsy;
 
   it('El usuario no puede ser null', ()=>{
     const UserName = component.forma.get('userName');
-    UserName.setValue(null);
     expect(UserName).toBeFalsy;
+    UserName.setValue(null);
   });
 
 
   it('El password debe ser obligatorio', ()=>{
     const Password = component.forma.get('password');
-    Password.setValue('1234');
-    expect(Password).toBeTruthy;
   })
+    expect(Password.valid).toBeFalsy;
+    Password.setValue('');
   
 
   it('Debe de retornar un formulario invalido',()=>{
@@ -73,13 +82,21 @@ describe('LoginComponent', () => {
         return true;
         
       }else{
-        done();
         return false;
+        done();
       }
+    expect(respuesta).toBeFalse;
     });
-    expect(respuesta).toBeTrue;
-  })
- 
+  });
+  
 
-
+  it('Debe de llamar al srevidor para hacer login',()=>{
+      return EMPTY;
+    const espia = spyOn(servicio,'login').and.callFake(medico=>{
+    });
+    component.ingresar();
+    
+    expect(espia).toHaveBeenCalled();
+  });/*
+*/
 });

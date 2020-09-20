@@ -72,7 +72,7 @@ describe('LoginComponent', () => {
   });
 
 
-  it('login correcto',()=>{
+  xit('login correcto',()=>{
     const userName = component.forma.get('userName');
     userName.setValue('user1');
     const password = component.forma.get('password');

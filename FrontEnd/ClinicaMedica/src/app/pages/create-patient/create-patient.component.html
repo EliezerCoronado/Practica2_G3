@@ -1,38 +1,32 @@
-<form [formGroup]="angForm" novalidate>
+<form [formGroup]="angForm" validate>
     <div class="form-group row">
         <label for="inputName" class="col-sm-2 col-form-label">Nombre</label>
         <div class="col-6">
-            <input type="text" class="form-control" id="inputName" placeholder="Nombre" formControlName="name" required
-                [(ngModel)]="patient.nombre">
+            <input type="text" class="form-control" id="inputName" placeholder="Nombre" formControlName="name" required [(ngModel)]="patient.nombre">
         </div>
     </div>
     <div class="form-group row">
         <label for="inputLastName" class="col-sm-2 col-form-label">Apellido</label>
         <div class="col-6">
-            <input type="text" class="form-control" id="inputLastName" placeholder="Apellido" formControlName="lastName"
-                required [(ngModel)]="patient.apellido">
+            <input type="text" class="form-control" id="inputLastName" placeholder="Apellido" formControlName="lastName" required [(ngModel)]="patient.apellido">
         </div>
     </div>
     <div class="form-group row">
         <label for="inputDPI" class="col-sm-2 col-form-label">DPI</label>
         <div class="col-6">
-            <input type="number" class="form-control" id="inputDPI"
-                placeholder="Número de documento personal de identificacion" formControlName="dpi" required
-                [(ngModel)]="patient.DPI">
+            <input type="number" class="form-control" id="inputDPI" placeholder="Número de documento personal de identificacion" formControlName="dpi" required [(ngModel)]="patient.DPI">
         </div>
     </div>
     <div class="form-group row">
         <label for="inputDescription" class="col-sm-2 col-form-label">Descripción</label>
         <div class="col-6">
-            <input type="text" class="form-control" id="inputDescription" placeholder="Descripción"
-                formControlName="description" required [(ngModel)]="patient.descripcion">
+            <input type="text" class="form-control" id="inputDescription" placeholder="Descripción" formControlName="description" required [(ngModel)]="patient.descripcion">
         </div>
     </div>
     <div class="form-group row">
         <label for="exampleFormControlSelect1" class="col-sm-2 col-form-label">Genero</label>
         <div class="col-6">
-            <select class="form-control" id="exampleFormControlSelect1" formControlName="genre" required
-                [(ngModel)]="patient.genero">
+            <select class="form-control" id="exampleFormControlSelect1" formControlName="genre" required [(ngModel)]="patient.genero">
                 <option>Otro</option>
                 <option>Mujer</option>
                 <option>Hombre</option>
@@ -42,8 +36,7 @@
 
     <div class="form-group row">
         <div class="col-sm-10">
-            <button [disabled]="angForm.status !== 'VALID'" id="save" type="submit"
-                class="btn btn-success">Guardar</button>
+            <button [disabled]="angForm.status !== 'VALID'" id="save" type="submit" class="btn btn-success">Guardar</button>
         </div>
     </div>
 

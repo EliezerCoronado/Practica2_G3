@@ -24,7 +24,7 @@ export class DashboardComponent implements OnInit {
     console.log(this.id);
     this.services.getPacientes(this.id)
       .subscribe((data: any) => {
-        console.log(data);
+        //console.log(data);
       },
         err => {
           console.log(err);

@@ -41,7 +41,7 @@ export class LoginComponent implements OnInit {
       (data:boolean)=>{
         // console.log(data)
         if(data === true){
-          //this.route.navigate(['/dashboard']);
+          this.route.navigate(['/dashboard/home']);
           return true;
         }
       },

@@ -13,7 +13,7 @@ export class SearchPatientComponent implements OnInit {
   constructor(public service: UsuarioService) { }
 
   ngOnInit(): void {
-    this.service.getPacientes(localStorage.getItem('colegiado')).subscribe(
+    this.service.getPacientes(localStorage.getItem('id')).subscribe(
       (data: Array<string>) => {
         console.log(data)
         this.patients = data['pacientes'];

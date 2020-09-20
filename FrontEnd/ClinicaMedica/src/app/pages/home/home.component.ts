@@ -2,10 +2,21 @@ import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-home',
-  templateUrl: './home.component.html',
+  //templateUrl: './home.component.html',
+  template: `<div class="row">
+    <div class="col-4">
+      <h1>{{principal}}</h1>
+    </div>
+    <div class="col-6">
+      <h4>{{randomText}}</h4>
+    </div>
+  </div>
+  <img id="home" src="/assets/home.jpg" alt="image">`,
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
+
+  principal = "Bienvenido!";
 
   texts = [
     "Hoy es un buen día para trabajar :)",

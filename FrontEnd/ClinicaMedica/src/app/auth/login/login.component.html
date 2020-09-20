@@ -1,0 +1,51 @@
+<!-- ============================================================== -->
+<!-- Main wrapper - style you can find in pages.scss -->
+<!-- ============================================================== -->
+<div class="page-wrapper bg-gra-03 p-t-45 p-b-50">
+    <div class="wrapper wrapper--w790">
+        <div class="card card-5">
+            <div class="card-heading">
+                <h2 class="title">Ingresar</h2>
+            </div>
+            <div class="card-body">
+                <form ngNativeValidate [formGroup]=forma (ngSubmit)='ingresar()'>
+                    <div class="form-row">
+                        <div class="name">Usuario</div>
+                        <div class="value">
+                            <div class="input-group">
+                                <input formControlName='userName' name="userName" class="input--style-5" type="text" placeholder="usuario" required>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="name">Contraseña</div>
+                        <div class="value">
+                            <div class="input-group">
+                                <input formControlName='password' name="password" type="password" class="input--style-5" placeholder="contraseña" required>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="col-sm-12 text-right">
+                        <button type="submit" class="btn btn--radius-2 btn--green">Ingresar</button>
+                    </div>
+
+
+
+                    <div class="col-sm-12 text-center">
+                        Aun no tienes una cuenta? <a routerLink='/register' class="text-info m-l-5"><b>Registrate</b></a>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- ============================================================== -->
+<!-- End Wrapper -->
+<!-- ============================================================== -->
+<!-- ============================================================== -->

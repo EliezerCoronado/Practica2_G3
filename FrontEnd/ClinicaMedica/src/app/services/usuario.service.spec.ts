@@ -74,7 +74,7 @@ describe('UsuarioService', () => {
 
 
   xit('Login exitoso', () => {
-    console.log('inicia login');
+    //console.log('inicia login');
     let respuesta;
     service.login('user4','123').subscribe(data=>{
       //console.log(data);

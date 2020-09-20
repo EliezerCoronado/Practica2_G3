@@ -36,8 +36,8 @@ export class SearchPatientComponent implements OnInit {
   }
   
   borrarUsuario(paciente:any, i:number){
-    console.log(paciente);
-    console.log(i);
+    //console.log(paciente);
+    //console.log(i);
 
 
 

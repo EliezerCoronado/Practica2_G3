@@ -44,15 +44,15 @@ export class RegisterComponent implements OnInit {
     //console.log(this.forma.value)
     
     if(this.forma.invalid){
-      console.log('formulario invalido')
+     // console.log('formulario invalido')
       return false;
     }
 
     this.servicio.crearMedico(this.forma.value).subscribe( (data:boolean)=>{
         if(data === true){
-          console.log('medico creado')
+          // console.log('medico creado')
         }else{
-          console.log('medico no creado');
+          // console.log('medico no creado');
         }
     });
 

@@ -2,14 +2,42 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { RegisterComponent } from './register.component';
 import { UsuarioService } from '../../services/usuario.service';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule, FormGroup, FormControl, Validators } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterTestingModule } from '@angular/router/testing';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 
+class MockRegister{
+  
+  forma:FormGroup;
+  constructor(){
+    this.forma = new FormGroup({
+      firstName: new FormControl(null, Validators.required),
+      lastName: new FormControl(null,Validators.required),
+      userName: new FormControl(null, Validators.required),
+      dpi: new FormControl(null,Validators.required),
+      colegiado: new FormControl(null, Validators.required),
+      genero: new FormControl(null, Validators.required),
+      password: new FormControl(null, Validators.required),
+      password2: new FormControl(null, Validators.required)
+    });
+  }
+
+  registrarMedico(forma){
+    if(forma.valid){
+      return true
+    }else{
+      return false
+    }
+  }
+
+
+}
+
 describe('RegisterComponent', () => {
   let component: RegisterComponent;
   let servicio: UsuarioService;
+  let mockRegistro: MockRegister;
   let fixture: ComponentFixture<RegisterComponent>;
 
   beforeEach(async(() => {
@@ -25,6 +53,7 @@ describe('RegisterComponent', () => {
     fixture = TestBed.createComponent(RegisterComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
+    mockRegistro = new MockRegister;
 
   });
 
@@ -101,7 +130,21 @@ describe('RegisterComponent', () => {
     expect(resp).toBeTrue;
 
   })
-
+  
+  it('Debe crear un medico, mock',()=>{
+      let forma = new FormGroup({
+      firstName: new FormControl('Eliezer', Validators.required),
+      lastName: new FormControl('COronado',Validators.required),
+      userName: new FormControl('user1', Validators.required),
+      dpi: new FormControl('123456',Validators.required),
+      colegiado: new FormControl('123456', Validators.required),
+      genero: new FormControl('Masculino', Validators.required),
+      password: new FormControl('123', Validators.required),
+      password2: new FormControl('123', Validators.required)
+    });
+    const resp = mockRegistro.registrarMedico(forma);
+    expect(resp).toBeTruthy;
+  })
 
   
 

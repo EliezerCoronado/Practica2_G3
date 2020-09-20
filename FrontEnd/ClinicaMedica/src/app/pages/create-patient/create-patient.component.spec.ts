@@ -1,8 +1,10 @@
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 
 import { CreatePatientComponent } from './create-patient.component';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { UsuarioService } from '../../services/usuario.service';
 
 describe('CreatePatientComponent', () => {
   let component: CreatePatientComponent;
@@ -11,8 +13,10 @@ describe('CreatePatientComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [CreatePatientComponent],
-      imports: [ReactiveFormsModule],
-      schemas: [NO_ERRORS_SCHEMA]
+      imports: [FormsModule,ReactiveFormsModule, HttpClientTestingModule],
+      schemas: [NO_ERRORS_SCHEMA],
+      providers:[UsuarioService]
+
     })
       .compileComponents();
   }));
@@ -36,4 +40,23 @@ describe('CreatePatientComponent', () => {
     form.controls.dpi.setValue(1234);
     expect(form.valid).toBeTruthy();
   });
+
+  xit('Crear paciente',()=>{
+    
+    let forma ={
+      value:{
+        'description': "y",
+        'dpi': '3',
+        'genre': "Hombre",
+        'lastName': "y",
+        'name': "y"
+      }
+      }
+
+    let resp =  component.registrarPaciente(forma);
+    console.log(resp);
+ 
+    expect(resp).toBeUndefined;
+  });
+
 });

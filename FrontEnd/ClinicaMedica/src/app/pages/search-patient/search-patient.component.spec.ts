@@ -2,6 +2,8 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { HttpClientModule } from '@angular/common/http';
 import { SearchPatientComponent } from './search-patient.component';
 import { RouterTestingModule } from '@angular/router/testing';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { UsuarioService } from '../../services/usuario.service';
 
 describe('SearchPatientComponent', () => {
   let component: SearchPatientComponent;
@@ -9,8 +11,9 @@ describe('SearchPatientComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [HttpClientModule, RouterTestingModule.withRoutes([])],
-      declarations: [SearchPatientComponent]
+      imports: [HttpClientTestingModule],
+      declarations: [SearchPatientComponent],
+      providers:[UsuarioService]
     })
       .compileComponents();
   }));
@@ -41,4 +44,16 @@ describe('SearchPatientComponent', () => {
     ];
     expect(arr).toEqual(arr2);
   });
+
+
+  it('Probando funcion orderByDPI a>b', function () {
+    let resp = component.orderPatientByDPI(2,1);
+    expect(resp).toEqual(0);
+  });
+
+  it('Probando funcion orderByDPI a<b', function () {
+    let resp = component.orderPatientByDPI(1,2);
+    expect(resp).toBeLessThan(1);
+  });
+
 });

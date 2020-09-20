@@ -22,7 +22,7 @@ export class CreatePatientComponent implements OnInit {
     medico: localStorage.getItem('id')
   }
 
-  constructor(private fb: FormBuilder, private servicio: UsuarioService) {
+  constructor(private fb: FormBuilder, public servicio: UsuarioService) {
     this.angForm = this.createForm();
   }
 
@@ -38,13 +38,12 @@ export class CreatePatientComponent implements OnInit {
       genre: ['', Validators.required],
       dpi: ['', Validators.required]
     });
-    console.log(form)
+
     return form;
   }
 
   registrarPaciente(forma:any){
-    console.log(forma);
-    console.log('hola mundo');
+    console.log(forma.value);
     this.servicio.crearPaciente(forma.value).subscribe(resp=>{
       Swal.fire({
         icon: 'success',

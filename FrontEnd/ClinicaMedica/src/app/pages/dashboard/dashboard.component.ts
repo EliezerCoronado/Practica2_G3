@@ -22,13 +22,13 @@ export class DashboardComponent implements OnInit {
     });
 
     this.id = localStorage.getItem('id');
-    console.log(this.id);
+
     this.services.getPacientes(this.id)
       .subscribe((data: any) => {
         //console.log(data);
       },
         err => {
-          console.log(err);
+          //console.log(err);
         })
   }
 

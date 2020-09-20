@@ -107,8 +107,8 @@ export class UsuarioService {
         colegiado: forma.colegiado,
         genero: forma.genero
     }
-    console.log('creando usuario')
-    console.log(forma);
+    //console.log('creando usuario')
+    //console.log(forma);
     const url =  URL_SERVICIOS + '/api/medicos';  
     return this.http.post(url,medico).pipe(
       map((resp:any) =>{
@@ -120,7 +120,7 @@ export class UsuarioService {
           });
           return true;
         }else{
-          console.log('error pe');
+          //console.log('error');
           return false;
         }
       })
@@ -150,8 +150,8 @@ export class UsuarioService {
     }
 
 
-  console.log('creando paciente')
-  console.log(forma);
+  //console.log('creando paciente')
+  //console.log(forma);
 
   let headers = new HttpHeaders();
   headers = headers.append('x-token',this.token);

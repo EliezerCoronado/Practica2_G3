@@ -163,6 +163,13 @@ export class UsuarioService {
     
   }
 
+  borrarPaciente(pacienteID:string){
+
+    const url = URL_SERVICIOS + '/api/pacientes/'+pacienteID;
+    return this.http.delete(url);
+
+  }
+
 }
 
 

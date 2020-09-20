@@ -4,13 +4,21 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { LoginComponent } from './login.component';
 import { UsuarioService } from '../../services/usuario.service';
 import { HttpClientModule } from '@angular/common/http';
-import { EMPTY, observable, Observable } from 'rxjs';
-import { from } from 'rxjs';
 
 import {  ReactiveFormsModule, FormsModule } from '@angular/forms';
-import { DebugElement } from '@angular/core';
 
+class MockUsuarioService{
+  authenticted = false  
+  login(user:string,password:string){
+      if(user ==='user1' && password ==='123'){
+        return this.authenticted ===true;       
+      }else{
+        return this.authenticted === false;
+      }
+    
+  }
 
+}
 
 
 
@@ -21,12 +29,13 @@ describe('LoginComponent', () => {
   let component: LoginComponent;
   let fixture: ComponentFixture<LoginComponent>;
   let servicio: UsuarioService;
+  let mockAuth: MockUsuarioService;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports:[FormsModule,ReactiveFormsModule,HttpClientModule, RouterTestingModule.withRoutes([])],
       declarations: [ LoginComponent ],
-      providers:[UsuarioService]
+      providers:[UsuarioService,MockUsuarioService]
     })
     .compileComponents();
   }));
@@ -35,6 +44,7 @@ describe('LoginComponent', () => {
     fixture = TestBed.createComponent(LoginComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
+    mockAuth = new MockUsuarioService;
 
   });
 
@@ -72,20 +82,29 @@ describe('LoginComponent', () => {
   });
 
 
-  xit('login correcto',()=>{
+  it('login correcto, usando mocks',()=>{
     const userName = component.forma.get('userName');
     userName.setValue('user1');
     const password = component.forma.get('password');
     password.setValue('123');
-    console.log(component.forma.value.userName);
-    console.log(component.forma.value.password);
-    const resp = component.ingresar();
+    //console.log(component.forma.value.userName);
+    //console.log(component.forma.value.password);
+    let resp = mockAuth.login(userName.value,password.value);
     expect(resp).toBeTrue;
+  });
+
+  it('login incorrecto, usando mocks',()=>{
+    const userName = component.forma.get('userName');
+    userName.setValue('user10');
+    const password = component.forma.get('password');
+    password.setValue('123');
+    //console.log(component.forma.value.userName);
+    //console.log(component.forma.value.password);
+    let resp = mockAuth.login(userName.value,password.value);
+    expect(resp).toBeFalsy;
   });
 
 
 
 
-
 });
-

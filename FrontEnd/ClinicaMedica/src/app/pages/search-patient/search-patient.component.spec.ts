@@ -51,9 +51,9 @@ describe('SearchPatientComponent', () => {
     expect(resp).toEqual(0);
   });
 
-  it('Probando funcion orderByDPI a<b', function () {
-    let resp = component.orderPatientByDPI(1,2);
-    expect(resp).toBeLessThan(1);
+    it('Probando funcion orderByDPI a>b', function () {
+    let resp = component.orderPatientByDPI(2,1);
+    expect(resp).toEqual(0);
   });
 
 });

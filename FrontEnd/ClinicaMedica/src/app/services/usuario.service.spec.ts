@@ -21,20 +21,20 @@ describe('UsuarioService', () => {
     mock = TestBed.get(HttpTestingController)
   });
 
-  it('should be created', () => {
+  it('Debe crearse', () => {
     expect(service).toBeTruthy();
   });
 
 
   
-  it('Cargar Storage, debe de existir un token mayor', ()=>{
+  it('Token debe ser mayor a 10', ()=>{
     localStorage.setItem('token','asdjfelkjdfenadfesskdfe5desfesdfe');
     service.cargarStorage(); 
     expect(service.token.length).toBeGreaterThan(10);
   });
 
 
-  it('Cargar Storage, el token no tiene nada', ()=>{
+  it('token vacio cargando storage', ()=>{
     localStorage.setItem('token','');
     service.cargarStorage(); 
     expect(service.token.length).toBeLessThanOrEqual(0);
@@ -42,7 +42,7 @@ describe('UsuarioService', () => {
 
 
 
-  it('SaveStorage, debe crear token, username, apellido,dpi, colegiado, id en el storage', ()=>{
+  it('Debe almacenar datos de usuario en el storage', ()=>{
     const token='jajaja123456789pepe';
     const nombre='Jose David';
     const apellido='Axpuac Velasquez';
@@ -61,21 +61,21 @@ describe('UsuarioService', () => {
   });
 
 
-  it('Verifica tamanio del token, devuelve true', ()=>{
+  it('Valida el token y en caso de positivo, lo devuelve', ()=>{
     localStorage.setItem('token',"jajaja123456789pepe");
     const resp = service.estaLogueado()
     expect(resp).toBe(true);
   });
 
-  it('Verifica tamanio del token, devuelve false', ()=>{
+  it('Valida en token en casi de falso, lo devuelve', ()=>{
     localStorage.setItem('token','');
     const resp = service.estaLogueado()
     expect(resp).toBe(false);
   });
 
 
-  xit('login correcto', () => {
-    console.log('intentando el login');
+  xit('Login exitoso', () => {
+    console.log('inicia login');
     let respuesta;
     service.login('user4','123').subscribe(data=>{
       //console.log(data);

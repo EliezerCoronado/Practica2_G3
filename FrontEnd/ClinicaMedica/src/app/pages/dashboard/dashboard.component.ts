@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { UsuarioService } from '../../services/usuario.service';
 import * as $ from 'jquery';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-dashboard',
@@ -9,7 +10,7 @@ import * as $ from 'jquery';
 })
 export class DashboardComponent implements OnInit {
 
-  constructor(private services: UsuarioService) { }
+  constructor(private services: UsuarioService, private router: Router) { }
 
   id = '';
 
@@ -29,6 +30,21 @@ export class DashboardComponent implements OnInit {
         err => {
           console.log(err);
         })
+  }
+
+  logout() {
+    this.clearLocalStorage();
+    this.router.navigate(['/login']);
+  }
+
+  clearLocalStorage = () => {
+    localStorage.setItem('username', '');
+    localStorage.setItem('token', '');
+    localStorage.setItem('nombre', '');
+    localStorage.setItem('apellido', '');
+    localStorage.setItem('dpi', '');
+    localStorage.setItem('colegiado', '');
+    localStorage.setItem('id', '');
   }
 
 }

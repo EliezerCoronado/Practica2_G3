@@ -22,4 +22,10 @@ describe('HomeComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it("Mensaje aleatorio", function() {
+    spyOn(Math, 'random').and.returnValue(0.6);
+    let text = component.getRandomText();
+    expect(text).toEqual("Sale en vacaciones :)");
+  });
 });

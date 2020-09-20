@@ -1,5 +1,5 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { HttpClientModule } from '@angular/common/http';
 import { SearchPatientComponent } from './search-patient.component';
 import { RouterTestingModule } from '@angular/router/testing';
 
@@ -9,10 +9,10 @@ describe('SearchPatientComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ SearchPatientComponent ],
-      imports:[RouterTestingModule.withRoutes([])]
+      imports: [HttpClientModule, RouterTestingModule.withRoutes([])],
+      declarations: [SearchPatientComponent]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {
@@ -21,7 +21,24 @@ describe('SearchPatientComponent', () => {
     fixture.detectChanges();
   });
 
-  xit('should create', () => {
+  it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('Ordenamiento de pacientes', function () {
+    var arr = [
+      { "nombre": "aldo", "DPI": 543 },
+      { "nombre": "aldo", "DPI": 123 },
+      { "nombre": "aldo", "DPI": 723 }
+    ];
+
+    arr.sort(component.orderPatientByDPI);
+
+    var arr2 = [
+      { "nombre": "aldo", "DPI": 123 },
+      { "nombre": "aldo", "DPI": 543 },
+      { "nombre": "aldo", "DPI": 723 }
+    ];
+    expect(arr).toEqual(arr2);
   });
 });

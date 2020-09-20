@@ -15,13 +15,23 @@ export class SearchPatientComponent implements OnInit {
   ngOnInit(): void {
     this.service.getPacientes(localStorage.getItem('id')).subscribe(
       (data: Array<string>) => {
-        console.log(data)
         this.patients = data['pacientes'];
+        this.patients.sort(this.orderPatientByDPI);
       },
       err => {
 
       }
     )
+  }
+
+  orderPatientByDPI = (a, b) => {
+    if (a.DPI < b.DPI) {
+      return -1;
+    }
+    if (a.DPI > b.DPI) {
+      return 1;
+    }
+    return 0;
   }
 
 }

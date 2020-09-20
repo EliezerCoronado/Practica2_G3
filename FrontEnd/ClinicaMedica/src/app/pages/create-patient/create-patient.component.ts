@@ -17,24 +17,26 @@ export class CreatePatientComponent implements OnInit {
     DPI: undefined,
     descripcion: '',
     genero: undefined,
-    medico: localStorage.getItem('colegiado')
+    medico: localStorage.getItem('id')
   }
 
   constructor(private fb: FormBuilder) {
-    this.createForm();
+    this.angForm = this.createForm();
   }
 
   ngOnInit(): void {
   }
 
   createForm() {
-    this.angForm = this.fb.group({
+    let form = this.fb.group({
       name: ['', Validators.required],
       lastName: ['', Validators.required],
       description: ['', Validators.required],
       genre: ['', Validators.required],
       dpi: ['', Validators.required]
     });
+    console.log(form)
+    return form;
   }
 
 }

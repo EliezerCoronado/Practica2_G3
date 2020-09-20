@@ -1,0 +1,119 @@
+<!-- ============================================================== -->
+<!-- Main wrapper - style you can find in pages.scss -->
+<!-- ============================================================== -->
+<div class="page-wrapper bg-gra-03 p-t-45 p-b-50">
+    <div class="wrapper wrapper--w790">
+        <div class="card card-5">
+            <div class="card-heading">
+                <h2 class="title">Registro</h2>
+            </div>
+            <div class="card-body">
+                <form ngNativeValidate [formGroup]="forma" (ngSubmit)='registrarMedico()'>
+
+                    <div class="form-row">
+                        <div class="name">Nombre</div>
+                        <div class="value">
+                            <div class="input-group">
+                                <input formControlName='firstName' name="firstName" class="input--style-5" type="text" placeholder="Nombre" required>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="name">Apellido</div>
+                        <div class="value">
+                            <div class="input-group">
+                                <input formControlName='lastName' name="lastName" class="input--style-5" type="text" placeholder="Apeliido" required>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="name">Dpi</div>
+                        <div class="value">
+                            <div class="input-group">
+                                <input formControlName='dpi' name="dpi" class="input--style-5" type="text" placeholder="DPI" required>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="name">Numero de Colegiado</div>
+                        <div class="value">
+                            <div class="input-group">
+                                <input formControlName='colegiado' name="colegiado" class="input--style-5" type="text" placeholder="No. Colegiado" required>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="name">Genero</div>
+                        <div class="value">
+                            <div class="input-group">
+
+                                <select formControlName="genero" name="genero" class="form-control input--style-5" placeholder="Genero" required>
+                                <option>Masculino</option>
+                                <option>Femenino</option>
+                            </select>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="name">Usuario</div>
+                        <div class="value">
+                            <div class="input-group">
+                                <input formControlName='userName' name="userNam" class="input--style-5" type="text" placeholder="Usuario" required>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="form-row">
+                        <div class="name">Contraseña</div>
+                        <div class="value">
+                            <div class="input-group">
+                                <input formControlName='password' name="password" type="password" class="input--style-5" placeholder="Contraseña" required>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="name">Confirmar Contraseña</div>
+                        <div class="value">
+                            <div class="input-group">
+                                <input formControlName='password2' name="password2" type="password" class="input--style-5" placeholder="confirmar contraseña" required>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+                    <div class="col-sm-12 text-right">
+                        <button type="submit" class="btn btn--radius-2 btn--green">Registrar</button>
+                    </div>
+                    <br>
+
+
+
+                    <div class="col-sm-12 text-center">
+                        Ya tiene una cuenta? <a routerLink='/login' class="text-info m-l-5"><b>Iniciar Sesion</b></a>
+                    </div>
+
+
+
+
+
+
+
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- ============================================================== -->
+<!-- End Wrapper -->
+<!-- ============================================================== -->
+<!-- ============================================================== -->

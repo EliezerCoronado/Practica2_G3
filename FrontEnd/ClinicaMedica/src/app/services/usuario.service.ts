@@ -139,6 +139,30 @@ export class UsuarioService {
 
   }
 
+  crearPaciente(forma:any){
+
+    const paciente = {
+      nombre: forma.name,
+      apellido: forma.lastName,
+      DPI: forma.dpi,
+      genero: forma.genre,
+      descripcion: forma.description
+    }
+
+
+  console.log('creando paciente')
+  console.log(forma);
+
+  let headers = new HttpHeaders();
+  headers = headers.append('x-token',this.token);
+  
+
+  const url =  URL_SERVICIOS + '/api/pacientes';  
+  return this.http.post(url,paciente,{headers});
+
+    
+  }
+
 }
 
 

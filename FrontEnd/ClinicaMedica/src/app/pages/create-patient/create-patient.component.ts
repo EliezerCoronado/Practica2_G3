@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import Swal from 'sweetalert2';
+import { UsuarioService } from '../../services/usuario.service';
 
 @Component({
   selector: 'app-create-patient',
@@ -20,12 +22,13 @@ export class CreatePatientComponent implements OnInit {
     medico: localStorage.getItem('id')
   }
 
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder, private servicio: UsuarioService) {
     this.angForm = this.createForm();
   }
 
   ngOnInit(): void {
   }
+
 
   createForm() {
     let form = this.fb.group({
@@ -37,6 +40,28 @@ export class CreatePatientComponent implements OnInit {
     });
     console.log(form)
     return form;
+  }
+
+  registrarPaciente(forma:any){
+    console.log(forma);
+    console.log('hola mundo');
+    this.servicio.crearPaciente(forma.value).subscribe(resp=>{
+      Swal.fire({
+        icon: 'success',
+        title:'Success',
+        text:'Paciente Creado'
+      });
+      return 1;
+    },err=>{
+      Swal.fire({
+        icon: 'error',
+        title:'Error',
+        text:'Error no se pudo crear el paciente'
+      });
+      return 0;
+
+    })
+
   }
 
 }
